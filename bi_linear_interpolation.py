@@ -1,10 +1,6 @@
 import cv2
 import numpy as np
-
-'''
-cv2.imshow('image', new_image)
-cv2.waitKey()
-'''
+from os import getcwd
 
 
 def get_blank_image(image, chunk_size):
@@ -52,11 +48,13 @@ def bi_interpolation(path, chunk_size):
     blank_image = get_blank_image(image, chunk_size)
     new_image = set_chunks(image, blank_image, chunk_size)
 
-    cv2.imwrite(r'C:\Users\27_07\PycharmProjects\image_interpolation\new_img.jpeg', new_image)
+    cv2.imwrite(rf'{getcwd()}\bi_interpolated_image.jpeg', new_image)
+    #cv2.imshow('image', new_image)
+    #cv2.waitKey()
 
 
 def main():
-    path = r'C:\Users\27_07\PycharmProjects\image_interpolation\img.jpeg'
+    path = rf'{getcwd()}\image.jpeg'
     bi_interpolation(path, 4)
 
 
