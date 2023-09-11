@@ -12,10 +12,10 @@ def get_blank_image(image, chunk_size):
 
 def interpolate_pixel(corners, pI, pJ):
     return (
-        corners[0][0] *     pI*pJ     +
-        corners[0][1] *     pI*(1-pJ) +
-        corners[1][0] * (1-pI)*pJ     +
-        corners[1][1] * (1-pI)*(1-pJ)
+        corners[0][0] * (1-pI)*(1-pJ) +
+        corners[0][1] * (1-pI)*pJ     +
+        corners[1][0] *     pI*(1-pJ) +
+        corners[1][1] *     pI*pJ
     )
 
 
@@ -31,6 +31,7 @@ def get_chunk(corners, chunk_size):
     return chunk
 
 
+# These chunks overlap. Fix it, if program will too slow.
 def set_chunks(image, new_image, chunk_size):
     for i in range(len(image)-1):
         for j in range(len(image[0])-1):
@@ -55,7 +56,7 @@ def bi_interpolation(path, chunk_size):
 
 def main():
     path = rf'{getcwd()}\image.jpeg'
-    bi_interpolation(path, 4)
+    bi_interpolation(path, 6)
 
 
 main()
